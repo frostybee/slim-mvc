@@ -1,7 +1,16 @@
 <?php
 
 declare(strict_types=1);
-//Settings for  Dev environment
+
+//Settings for  development (dev) environment
+define('APP_BASE_URI', '/booking-admin');
+// App-specific config.
+define('APP_DEBUG_MODE', true);
+define('APP_BASE_URL', 'http://localhost' . APP_BASE_URI);
+define('APP_ASSETS_URL', APP_BASE_URL . APP_BASE_URI . '/public/assets');
+define('APP_ASSETS_DIR_PATH', realpath(APP_ROOT_DIR . '/' . 'public/assets'));
+define('APP_ASSETS_URI', '/public/assets');
+
 
 function myCustomErrorHandler(int $errNo, string $errMsg, string $file, int $line)
 {

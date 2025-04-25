@@ -6,13 +6,14 @@ declare(strict_types=1);
 // The APP_ENV value must be set to either prod or dev
 //$_ENV['APP_ENV'] = 'prod';
 $_ENV['APP_ENV'] ??= $_SERVER['APP_ENV'] ?? 'dev';
+$app_environment = $_ENV['APP_ENV'];
 
 // Load default settings
 $settings = require __DIR__ . '/defaults.php';
 
 // Overwrite default settings with environment specific local settings
 $configFiles = [
-    __DIR__ . sprintf('/local.%s.php', $_ENV['APP_ENV']),
+    __DIR__ . sprintf('/local.%s.php', $app_environment),
     __DIR__ . '/env.php',
     __DIR__ . '/../../env.php',
 ];

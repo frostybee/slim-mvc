@@ -18,3 +18,14 @@ function dd($data)
     echo '</pre>';
     die();
 }
+
+/**
+ * Removes the trailing seconds from the supplied date.
+ *
+ * @param  mixed $date The date in string representation to be formatted.
+ * @return string The formatted date without seconds.
+ */
+function date_remove_secs(string $date): string
+{
+    return date('Y-m-d H:i', strtotime($date));
+}

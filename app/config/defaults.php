@@ -20,6 +20,22 @@ $settings['error'] = [
     'display_error_details' => false,
 ];
 
+
+// TODO:
+// 1. change the domain name.
+// 2. change the domain name.
+$settings['session'] = [
+    'name' => 'app_session',
+    'lifetime' => 30 * 557200,
+    //'path' => realpath(__DIR__ . '/../var/tmp'),
+    // Must be set to the application's base directory name.
+    'path' => '/' . APP_ROOT_DIR_NAME,
+    'domain' => 'localhost',
+    'secure' => false,
+    'httponly' => true,
+    'cache_limiter' => 'nocache',
+];
+
 // Logger settings
 $settings['logger'] = [
     // Log file location
