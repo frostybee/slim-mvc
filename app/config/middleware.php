@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Middleware\HelloMiddleware;
+use App\Middleware\ExceptionMiddleware;
 use Slim\App;
 
 return function (App $app) {

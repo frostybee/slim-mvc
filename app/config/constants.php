@@ -7,6 +7,9 @@ define('APP_BASE_PATH', dirname(__DIR__, 2));
 // Holds the name of the app's root directory.
 define('APP_ROOT_DIR', basename(dirname(__FILE__, 3)));
 
+define('APP_VIEWS_DIR', realpath(__DIR__ . '/../src/views'));
+
+
 //* HTTP response status code.
 const HTTP_OK = 200;
 const HTTP_CREATED = 201;

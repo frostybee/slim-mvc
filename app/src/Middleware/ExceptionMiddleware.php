@@ -26,7 +26,7 @@ final class ExceptionMiddleware implements MiddlewareInterface
         ResponseFactoryInterface $responseFactory,
         JsonRenderer $jsonRenderer,
         LoggerInterface $logger = null,
-        bool $displayErrorDetails = false,
+        bool $displayErrorDetails = true,
     ) {
         $this->responseFactory = $responseFactory;
         $this->renderer = $jsonRenderer;
