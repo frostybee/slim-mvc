@@ -3,6 +3,13 @@
 declare(strict_types=1);
 
 /**
+ * This file contains various helper functions that can be used throughout the
+ * application. These functions are not part of any class and can be called
+ * directly.
+ */
+
+
+/**
  * dd: dump and die.
  *
  * Outputs the content of the supplied variable and terminates the execution

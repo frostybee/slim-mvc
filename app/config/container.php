@@ -31,11 +31,13 @@ $definitions = [
         //echo APP_BASE_PATH;exit;
         $app->setBasePath('/' . APP_ROOT_DIR);
 
-        // Register routes
-        (require_once realpath(__DIR__ . '/../Routes/routes.php'))($app);
+        // Register web routes.
+        require_once realpath(__DIR__ . '/../Routes/web.php')($app);
+        // Register API routes.
+        require_once realpath(__DIR__ . '/../Routes/api.php')($app);
 
         // Register middleware
-        (require_once realpath(__DIR__ . '/middleware.php'))($app);
+        require_once realpath(__DIR__ . '/middleware.php')($app);
 
         return $app;
     },
