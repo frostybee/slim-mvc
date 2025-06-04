@@ -3,10 +3,9 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the Slim application.
+ * This contains routes for the Web API exposed by this application.
  *
- * It contains the routes for the Web API exposed by this application.
- * Client applications can use this Web API to interact with the application using AJAX.
+ * Client applications can interact with the exposed endpoints using AJAX.
  */
 
 use Psr\Http\Message\ResponseInterface as Response;

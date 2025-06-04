@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 // Holds the path of the application's root directory.
 define('APP_BASE_PATH', dirname(__DIR__, 2));
+
 // Holds the name of the app's root directory.
 define('APP_ROOT_DIR', basename(dirname(__FILE__, 3)));
 

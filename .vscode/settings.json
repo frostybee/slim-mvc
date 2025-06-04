@@ -16,7 +16,7 @@
   "editor.hover.enabled": true,
   "editor.codeLens": true,
   "workbench.statusBar.visible": true,
-  // Disable the stupidly annoying hints that show up before of variable names.
+  // Disable the stupidly annoying hints that show up before variable names.
   "editor.inlayHints.enabled": "off",
 
   //-------- Appearance settings --------
