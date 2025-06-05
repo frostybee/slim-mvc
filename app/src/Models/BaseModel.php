@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 class BaseModel
 {
     protected $db;
 
-    public function __construct()
-    {
-        $this->db = App::getContainer()->get(PDO::class);
-    }
+    public function __construct() {}
 }

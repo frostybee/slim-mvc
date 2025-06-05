@@ -12,8 +12,11 @@ declare(strict_types=1);
 /**
  * dd: dump and die.
  *
- * Outputs the content of the supplied variable and terminates the execution
- * of the application.
+ * This helper function is very useful for debugging: it outputs the content of the supplied variable and
+ * terminates the execution of the application.
+ *
+ * @see https://www.php.net/manual/en/function.var-dump.php
+ * @see https://www.php.net/manual/en/function.die.php
  *
  * @param  mixed $data The variable whose content needs to be dumped.
  * @return void

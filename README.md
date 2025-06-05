@@ -10,7 +10,8 @@ This template gives you a solid foundation to build web applications using the S
 
 This starter template follows best practices and adheres to industry standards:
 
-- **Slim 4** - The "slim" PHP microframework
+- **Slim 4**: The "slim" PHP microframework
+- **Routing**: Slim's custom routing based on [FastRoute](https://github.com/nikic/FastRoute)
 - **Dependency injection container** (PSR-11)
 - **HTTP message interfaces** (PSR-7)
 - **HTTP Server Request Handlers**, Middleware (PSR-15)
