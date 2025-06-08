@@ -15,7 +15,7 @@ final class JsonRenderer
         $response = $response->withHeader('Content-Type', 'application/json');
 
         $response->getBody()->write(
-            (string) json_encode(
+            (string)json_encode(
                 $data,
                 JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR
             )
