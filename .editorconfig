@@ -13,13 +13,17 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+
+[composer.json]
+indent_size = 4
+
 # Code files
 [*.{php,sql}]
 indent_size = 4
 
 
 [*.js]
-indent_size = 2
+indent_size = 4
 
 # Markdown Files
 [*.{md,mdx}]
@@ -36,7 +40,14 @@ end_of_line = crlf
 
 # JSON files
 [*.{yml,yaml,json,json5,webmanifest}]
-indent_size = 2
+indent_size = 4
+
+[*.{xml,neon}]
+indent_size = 4
+indent_style = tab
+
+[*.{php,html,js,css,scss,json,twig,twig.html}]
+indent_size = 4
 
 # YAML Files
 [*.{yml,yaml}]
