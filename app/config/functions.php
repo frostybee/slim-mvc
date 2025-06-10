@@ -29,6 +29,78 @@ function dd($data)
     die();
 }
 
+if (!function_exists('get_asset_url')) {
+    /**
+     * Assets URL helper function.
+     *
+     * This function will create an asset file URL that includes a cache busting parameter in order
+     * to invalidate the browser cache in case of an update.
+     *
+     * @param string $asset_uri Relative URI (just like the one used in the base_url helper).
+     *
+     * @return string Returns the final asset URL.
+     */
+    function get_asset_url(string $asset_uri = ''): string
+    {
+        $debug = APP_DEBUG_MODE;
+
+        $cache_busting_token = !$debug ? '?' . CACHE_BUSTING_TOKEN : '';
+
+        if (str_contains(basename($asset_uri), '.js') && !str_contains(basename($asset_uri), '.min.js') && !$debug) {
+            $asset_uri = str_replace('.js', '.min.js', $asset_uri);
+        }
+
+        if (str_contains(basename($asset_uri), '.css') && !str_contains(basename($asset_uri), '.min.css') && !$debug) {
+            $asset_uri = str_replace('.css', '.min.css', $asset_uri);
+        }
+
+        //TODO: APP_BASE_URL can be replaced by a base_url function. where the protocol can be detected.
+        return APP_BASE_URL . $asset_uri . $cache_busting_token;
+    }
+}
+
+if (!function_exists('css_link')) {
+
+    /**
+     * Creates a <link> HTML element linking the supplied CSS file's URI.
+     *
+     * @param  mixed $css_uri  The URI of the CSS resource to be linked
+     * @return string A configured <link> element.
+     */
+    function css_link(string $css_uri): string
+    {
+        // dd(APP_ASSETS_DIR . $css_uri);
+        if (file_exists(APP_ASSETS_DIR_PATH . $css_uri)) {
+            //we know it will exists within the HTTP Context
+            $css_uri = APP_ASSETS_DIR_URL . $css_uri;
+            return sprintf('<link href="%s" rel="stylesheet" type="text/css">', get_asset_url($css_uri));
+            // return sprintf("<script type=\"text/javascript\" src=\"%s\"></script>", $css_uri);
+        }
+        return "<!-- Unable to load $css_uri -->";
+    }
+}
+
+if (!function_exists('js_link')) {
+
+    /**
+     * Creates a <script> HTML element linking the supplied JS file's URI.
+     *
+     * @param  mixed $js_uri The URI of the JS file to be linked
+     * @param  bool $is_module Whether the JS file is an ES6 module.
+     * @return string A string representing a configured <script> element.
+     */
+    function js_link(string $js_uri, bool $is_module = false): string
+    {
+        $script_type = $is_module ? 'module' : 'text/javascript';
+        if (file_exists(APP_ASSETS_DIR_PATH . $js_uri)) {
+            //we know it will exists within the HTTP Context
+            $js_uri = APP_ASSETS_DIR_URL . $js_uri;
+            return sprintf('<script  type="%s" src="%s"></script>', $script_type, get_asset_url($js_uri));
+        }
+        return "<!-- Unable to load $js_uri -->";
+    }
+}
+
 /**
  * Removes the trailing seconds from the supplied date.
  *
@@ -38,4 +110,32 @@ function dd($data)
 function date_remove_secs(string $date): string
 {
     return date('Y-m-d H:i', strtotime($date));
+}
+
+/**
+ * Get the name of the error.
+ *
+ * @param  int $error_no The error number.
+ * @return string The name of the error.
+ */
+function getErrorName(int $error_no): string
+{
+    $error_types = [
+        E_ERROR             => 'E_ERROR',
+        E_WARNING           => 'E_WARNING',
+        E_PARSE             => 'E_PARSE',
+        E_NOTICE            => 'E_NOTICE',
+        E_CORE_ERROR        => 'E_CORE_ERROR',
+        E_CORE_WARNING      => 'E_CORE_WARNING',
+        E_COMPILE_ERROR     => 'E_COMPILE_ERROR',
+        E_COMPILE_WARNING   => 'E_COMPILE_WARNING',
+        E_USER_ERROR        => 'E_USER_ERROR',
+        E_USER_WARNING      => 'E_USER_WARNING',
+        E_USER_NOTICE       => 'E_USER_NOTICE',
+        E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
+        E_DEPRECATED        => 'E_DEPRECATED',
+        E_USER_DEPRECATED   => 'E_USER_DEPRECATED',
+    ];
+
+    return $error_types[$error_no] ?? "UNKNOWN_ERROR";
 }
