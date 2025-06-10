@@ -51,20 +51,25 @@ Here's how everything is organized:
 ```
 slim-mvc/
 ├── app/
-│   ├── config/         # Configuration files and bootstrap
+│   ├── Controllers/    # Your controllers live here
+│   ├── Domain/         # Domain logic and business rules
+│   ├── Helpers/        # Utility classes and helpers
+│   ├── Middleware/     # Custom middleware
+│   ├── Models/         # Data models and entities
 │   ├── Routes/         # Route definitions (web & API)
-│   └── src/
-│       ├── Controllers/  # Your controllers live here 
-│       ├── Core/        # Core application classes
-│       ├── Helpers/     # Utility classes and helpers
-│       ├── Middleware/  # Custom middleware
-│       └── Views/       # Your view templates
+│   ├── Utils/          # General utility functions
+│   └── Views/          # Your view templates
+├── config/             # Configuration files and bootstrap
 ├── data/               # Database files, uploads, etc.
 ├── docs/               # Documentation
 ├── public/             # Web-accessible files
+│   ├── assets/         # Static assets (CSS, JS, images)
+│   │   ├── css/        # Stylesheets
+│   │   └── js/         # JavaScript files
 │   ├── index.php       # Application entry point
 │   └── .htaccess       # Apache rewrite rules
-├── var/                # Logs, cache, temp files
+├── var/                # Runtime files
+│   └── logs/           # Application logs
 └── vendor/             # Composer dependencies
 ```
 
