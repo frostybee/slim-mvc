@@ -29,9 +29,9 @@ $definitions = [
         $app->setBasePath('/' . APP_ROOT_DIR_NAME);
 
         // Register web routes.
-        (require_once realpath(__DIR__ . '/../Routes/web-routes.php'))($app);
+        (require_once realpath(__DIR__ . '/../app/Routes/web-routes.php'))($app);
         // Register API routes.
-        (require_once realpath(__DIR__ . '/../Routes/api-routes.php'))($app);
+        (require_once realpath(__DIR__ . '/../app/Routes/api-routes.php'))($app);
 
         // Register middleware
         (require_once realpath(__DIR__ . '/middleware.php'))($app);

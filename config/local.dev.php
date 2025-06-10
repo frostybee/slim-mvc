@@ -14,10 +14,11 @@ define('APP_ASSETS_DIR_PATH', realpath(APP_BASE_DIR_PATH . '/' . APP_ASSETS_DIR)
 
 // Update the cache busting token upon new deployments.
 define('CACHE_BUSTING_TOKEN', 'YV954');
+
 function myCustomErrorHandler(int $error_no, string $error_message, string $file, int $line_number)
 {
     echo sprintf(
-        "<strong>Error:</strong> %s  <strong>:</strong> %s <br> <strong> occurred in:</strong> [%s] <strong> at line:</strong> [%s] <br>",
+        "<strong>Error:</strong> %s <br><strong>Message:</strong> %s <br> <strong> occurred in:</strong> [%s] <strong> at line:</strong> [%s] <br>",
         getErrorName($error_no),
         $error_message,
         $file,
@@ -25,7 +26,7 @@ function myCustomErrorHandler(int $error_no, string $error_message, string $file
     );
 }
 
-// set_error_handler('myCustomErrorHandler');
+set_error_handler('myCustomErrorHandler');
 
 return function (array $settings): array {
     // Error reporting
