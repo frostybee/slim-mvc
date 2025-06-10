@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-// Holds the path of the application's root directory.
-define('APP_BASE_PATH', dirname(__DIR__, 2));
+// Define the path of the application's root directory.
+define('APP_BASE_DIR_PATH', realpath(dirname(__DIR__, 2)));
 
 // Holds the name of the app's root directory.
-define('APP_ROOT_DIR', basename(dirname(__FILE__, 3)));
+define('APP_ROOT_DIR_NAME', basename(dirname(__FILE__, 3)));
 
-define('APP_VIEWS_DIR', realpath(__DIR__ . '/../src/views'));
+// Define the path of the application's views directory.
+define('APP_VIEWS_PATH', realpath(APP_BASE_DIR_PATH . '/app/src/views'));
 
 
 //* HTTP response status code.

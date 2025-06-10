@@ -25,9 +25,8 @@ $definitions = [
     App::class => function (ContainerInterface $container) {
 
         $app = AppFactory::createFromContainer($container);
-        //$app->setBasePath('/slim-template');
-        //echo APP_BASE_PATH;exit;
-        $app->setBasePath('/' . APP_ROOT_DIR);
+        // echo APP_ROOT_DIR_NAME;exit;
+        $app->setBasePath('/' . APP_ROOT_DIR_NAME);
 
         // Register web routes.
         (require_once realpath(__DIR__ . '/../Routes/web-routes.php'))($app);
@@ -40,7 +39,7 @@ $definitions = [
         return $app;
     },
     PhpRenderer::class => function (ContainerInterface $container): PhpRenderer {
-        $renderer = new PhpRenderer(APP_VIEWS_DIR);
+        $renderer = new PhpRenderer(APP_VIEWS_PATH);
         return $renderer;
     },
     PDOService::class => function (ContainerInterface $container): PDOService {
