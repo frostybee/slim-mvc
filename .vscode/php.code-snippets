@@ -27,8 +27,8 @@
   },
   "Render Template": {
     "prefix": "render",
-    "body": "render('${1:template}', ['${2:key}' => ${3:value}]);",
-    "description": "Call render() function"
+    "body": "return $$this->render($$response, '${1:viewName.php}', $${2:data});",
+    "description": "Insert a render view statement in a controller method"
   },
 
   "Include Template": {
@@ -39,8 +39,8 @@
 
   "Require File": {
     "prefix": "req",
-    "body": "<?php require '${1:filename}.php'; ?>",
-    "description": "PHP require"
+    "body": "<?php require_once '${1:filename}.php'; ?>",
+    "description": "PHP require once statement"
   },
 
   "Function Declaration": {
@@ -48,64 +48,51 @@
     "body": "function ${1:functionName}(${2:parameters}) {\n\t${3:// code}\n}",
     "description": "PHP function declaration"
   },
-
-  "Arrow Function": {
-    "prefix": "fnar",
-    "body": "fn(${1:params}) => ${2:expression};",
-    "description": "PHP arrow function"
-  },
-
-  "If Statement": {
-    "prefix": "if",
+  "If Statement in HTML": {
+    "prefix": "hif",
     "body": "<?php if (${1:condition}): ?>\n\t${2:// code}\n<?php endif; ?>",
-    "description": "PHP if statement"
+    "description": "Insert a PHP if statement in HTML"
   },
 
   "If Else Statement": {
-    "prefix": "ifel",
+    "prefix": "hifel",
     "body": "<?php if (${1:condition}): ?>\n\t${2:// code}\n<?php else: ?>\n\t${3:// else code}\n<?php endif; ?>",
-    "description": "PHP if-else statement"
+    "description": "Insert a PHP if-else statement in HTML"
   },
 
   "ElseIf Statement": {
-    "prefix": "elseif",
+    "prefix": "helseif",
     "body": "<?php elseif (${1:condition}): ?>",
-    "description": "PHP elseif statement"
+    "description": "Insert a PHP elseif statement in HTML"
   },
 
   "Switch Statement": {
-    "prefix": "switch",
+    "prefix": "hswitch",
     "body": "<?php switch (${1:variable}): ?>\n\t<?php case ${2:value}: ?>\n\t\t${3:// code}\n\t\t<?php break; ?>\n\t<?php default: ?>\n\t\t${4:// default code}\n<?php endswitch; ?>",
-    "description": "PHP switch statement"
+    "description": "Insert a PHP switch statement in HTML"
   },
 
   "For Loop": {
-    "prefix": "for",
+    "prefix": "hfor",
     "body": "<?php for ($${1:i} = ${2:0}; $${1} < ${3:count}; $${1}++): ?>\n\t${4:// code}\n<?php endfor; ?>",
-    "description": "PHP for loop"
+    "description": "Insert a 0-index PHP for loop in HTML"
   },
 
   "Foreach Loop": {
-    "prefix": "foreach",
+    "prefix": "hforeach",
     "body": "<?php foreach (${1:array} as ${2:key} => ${3:value}): ?>\n\t${4:// code}\n<?php endforeach; ?>",
-    "description": "PHP foreach loop"
+    "description": "Insert a PHP foreach loop in HTML"
   },
 
   "While Loop": {
-    "prefix": "while",
+    "prefix": "hwhile",
     "body": "<?php while (${1:condition}): ?>\n\t${2:// code}\n<?php endwhile; ?>",
-    "description": "PHP while loop"
-  },
-
-  "Try Catch Block": {
-    "prefix": "try",
-    "body": "try {\n\t${1:// code}\n} catch (Throwable $${2:e}) {\n\t${3:// handle error}\n}",
-    "description": "PHP try-catch block"
+    "description": "Insert a PHP while loop in HTML"
   },
 
   "Class Declaration": {
     "prefix": "class",
-    "body": "class ${1:ClassName} {\n\tpublic function __construct(${2:args}) {\n\t\t${3:// constructor}\n\t}\n\n\t${4:// methods}\n}",
+    "body": "class ${1:ClassName} {\n\tpublic function __construct($${2:args}) {\n\t\t${3:// constructor}\n\t}\n\n\t${4:// methods}\n}",
     "description": "PHP class declaration"
   },
 
@@ -135,13 +122,13 @@
 
   "Array Declaration": {
     "prefix": "arr",
-    "body": "[${1:values}]",
+    "body": "$${1:array_name} = [${2:values}]",
     "description": "PHP short array"
   },
 
   "Print Statement": {
-    "prefix": "print",
-    "body": "print(${1:expression});",
+    "prefix": "print_r",
+    "body": "print_r($${1:expression});",
     "description": "PHP print statement"
   },
 
@@ -149,5 +136,10 @@
     "prefix": "echo",
     "body": "echo ${1:expression};",
     "description": "PHP echo statement"
+  },
+  "Echo Var Statement": {
+    "prefix": "echo_var",
+    "body": "echo $${1:expression};",
+    "description": "PHP echo variable statement"
   }
 }

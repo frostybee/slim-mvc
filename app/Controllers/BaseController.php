@@ -34,7 +34,7 @@ abstract class BaseController
      *
      * @param Request $request The request object.
      * @param Response $response The response object.
-     * @param string $view_name The name of the view to redirect to.
+     * @param string $view_name The name of the target view to redirect to.
      * @param int $status The status code to redirect with.
      * @return Response The response object.
      */
