@@ -29,6 +29,41 @@ function dd($data)
     die();
 }
 
+/**
+ * Escapes a string for safe output in HTML context.
+ *
+ * This function is a wrapper around htmlspecialchars() with secure defaults
+ * for preventing Cross-Site Scripting (XSS) attacks. It converts special
+ * characters to HTML entities using UTF-8 encoding and HTML5 standards.
+ *
+ * Characters escaped:
+ * - & (ampersand) becomes &amp;
+ * - " (double quote) becomes &quot;
+ * - ' (single quote) becomes &#039;
+ * - < (less than) becomes &lt;
+ * - > (greater than) becomes &gt;
+ *
+ * @param string $string The input string to be escaped.
+ *
+ * @return string The escaped string safe for HTML output.
+ *
+ * @example
+ * echo e('<script>alert("XSS")</script>');
+ * // Outputs: &lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;
+ *
+ * @example
+ * echo '<input value="' . e($userInput) . '">';
+ * // Safely outputs user input in HTML attribute
+ *
+ * @see htmlspecialchars()
+ * @link https://www.php.net/manual/en/function.htmlspecialchars.php
+ */
+function hs($string)
+{
+    return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5 | ENT_DISALLOWED, 'UTF-8');
+}
+
+
 if (!function_exists('get_asset_url')) {
     /**
      * Assets URL helper function.

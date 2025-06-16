@@ -16,9 +16,9 @@
   // 	"description": "Log output to console"
   // }
   "Escape Short Echo": {
-    "prefix": "ee",
-    "body": "<?= e($${1:var}) ?>",
-    "description": "Insert <?= e($var) ?>"
+    "prefix": "hs",
+    "body": "<?= hs($${1:var}) ?>",
+    "description": "Insert <?= hs($var) ?>"
   },
   "Dump and Die": {
     "prefix": "dd",
