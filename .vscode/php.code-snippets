@@ -15,15 +15,30 @@
   // 	],
   // 	"description": "Log output to console"
   // }
-  "Escape Short Echo": {
-    "prefix": "hs",
+  "This keyword": {
+    "prefix": "dis",
+    "body": "$$this->${0}",
+    "description": "Insert $this-> keyword in PHP"
+  },
+  "Short Echo Var": {
+    "prefix": "hse_var",
+    "body": "<?= $${1:var}?>",
+    "description": "Insert short echo var <?= $var ?> in HTML"
+  },
+  "Short Echo expression": {
+    "prefix": "hse_expr",
+    "body": "<?= ${1:expression}?>",
+    "description": "Insert short echo expression <?= expression ?> in HTML"
+  },
+  "HTML Special Chars": {
+    "prefix": "h_hschars",
     "body": "<?= hs($${1:var}) ?>",
-    "description": "Insert <?= hs($var) ?>"
+    "description": "Insert htmlspecialchars wrapper function call <?= hs($var) ?> in HTML"
   },
   "Dump and Die": {
     "prefix": "dd",
     "body": "dd($${1:var});",
-    "description": "Dump data and stop execution"
+    "description": "Insert a dd function call: dump data and stop execution."
   },
   "Render Template": {
     "prefix": "render",
@@ -34,13 +49,13 @@
   "Include Template": {
     "prefix": "inc",
     "body": "<?php include '${1:template}.php'; ?>",
-    "description": "PHP include"
+    "description": "PHP include in statement"
   },
 
   "Require File": {
     "prefix": "req",
     "body": "<?php require_once '${1:filename}.php'; ?>",
-    "description": "PHP require once statement"
+    "description": "PHP require once statement."
   },
 
   "Function Declaration": {
@@ -133,7 +148,7 @@
   },
 
   "Echo Statement": {
-    "prefix": "echo",
+    "prefix": "echo_expr",
     "body": "echo ${1:expression};",
     "description": "PHP echo statement"
   },
@@ -141,5 +156,17 @@
     "prefix": "echo_var",
     "body": "echo $${1:expression};",
     "description": "PHP echo variable statement"
+  },
+  // If statement (ternary operator style)
+  "Ternary Operator": {
+    "prefix": "ternary",
+    "body": "$${1:var} = ${2:condition} ? ${3:trueValue} : ${4:falseValue};",
+    "description": "PHP ternary operator"
+  },
+
+  "Null Coalescing": {
+    "prefix": "coalesce",
+    "body": "$${1:var} = ${2:variable} ?? ${3:defaultValue};",
+    "description": "PHP null coalescing operator"
   }
 }

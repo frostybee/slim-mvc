@@ -1,9 +1,9 @@
 <?php
 
-use App\Helpers\ViewsHelper;
-
+use App\Helpers\ViewHelper;
+//TODO: set the page title dynamically based on the view being rendered in the controller.
 $page_title = 'Home';
-ViewsHelper::loadHeader($page_title);
+ViewHelper::loadHeader($page_title);
 ?>
 
 <h1>Slim Framework-based MVC Application</h1>
@@ -15,6 +15,6 @@ ViewsHelper::loadHeader($page_title);
 <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. </p>
 
 <?php
-ViewsHelper::loadJsScripts();
-ViewsHelper::loadFooter();
+ViewHelper::loadJsScripts();
+ViewHelper::loadFooter();
 ?>
