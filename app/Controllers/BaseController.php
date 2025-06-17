@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Utils\AppSettings;
+use App\Core\AppSettings;
 use Slim\Views\PhpRenderer;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
