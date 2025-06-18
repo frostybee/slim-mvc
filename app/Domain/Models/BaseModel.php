@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Models;
 
-use App\Core\PDOService;
+use App\Utils\PDOService;
 
 /**
  * Base model class for all models.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Core\AppSettings;
-use App\Core\JsonRenderer;
-use App\Core\PDOService;
+use App\Utils\AppSettings;
+use App\Utils\JsonRenderer;
+use App\Utils\PDOService;
 use App\Middleware\ExceptionMiddleware;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This contains routes for the Web API exposed by this application.
+ * This file contains routes for the Web API exposed by this application.
  *
  * Client applications can interact with the exposed endpoints using AJAX.
  */
