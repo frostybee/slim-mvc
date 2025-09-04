@@ -9,7 +9,7 @@ use PDO;
 
 class PDOService
 {
-    private PDO $db;
+    private ?PDO $db = null;
     private array $config = [];
 
 
@@ -19,19 +19,25 @@ class PDOService
     }
     private function connect(): void
     {
+        if ($this->db !== null) {
+            return;
+        }
+
         if (!isset($this->config['database'])) {
-            throw new Exception('&args[\'database\'] is required.');
+            throw new Exception('Database name is required in configuration.');
         }
 
         if (!isset($this->config['username'])) {
-            throw new Exception('&args[\'username\']  is required');
+            throw new Exception('Username is required in configuration.');
         }
+
         $host = $this->config['host'] ?? 'localhost';
         $charset = 'utf8mb4';
         $port = $this->config['port'] ?? '3306';
         $password = $this->config['password'] ?? '';
         $database = $this->config['database'];
         $username = $this->config['username'];
+
         try {
             $dsn = sprintf(
                 'mysql:host=%s;dbname=%s;port=%s;charset=%s',

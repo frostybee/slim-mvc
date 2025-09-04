@@ -26,6 +26,39 @@ This starter template follows best practices and adheres to industry standards:
 - Composer (for dependency management)
 - A web server (Apache, Nginx)
 
+## How Do I Use/Deploy this Template?
+
+Follow the instructions below in the specified order:
+
+1. Download this repository as `.zip` file.
+2. Extract the downloaded `slim-mvc-main.zip` file locally.
+3. Copy the `slim-mvc-main` folder into your Web server's **document root** (that is, `htdocs`)
+4. Rename the `slim-mvc-main` folder to, for example, `[project_name]-app`. For example, `worldcup-app`
+5. Open your `[project_name]-app` folder in VS Code
+6. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) and select `Command Prompt` dropdown menu in the upper-right corner. Then run `../../composer.bat update` command to install or update the required dependencies.
+   - If you are not using Wampoon to develop your app, just run composer from the command line.
+7. Adjust your database credentials, **see below**.
+
+**```NOTE:```** You can always clone this repository. However, if you do, you need to remove the ```.git``` ***hidden*** directory before you copy this template over to ```htdocs```
+
+## How Do I Configure My Database Connection?
+
+Follow the outlined instructions in [config/env.example.php](config/env.example.php)
+
+* Change the value of the `database` variable to reflect the name of the database to be used by your slim app.
+* You may also want to change the connection credentials in that file.
+
+## On Using Environment Variables
+
+Sensitive information used in app such as your database credentials, API key, etc. MUST not be pushed into your Git repo.
+
+Do not use `.env` files for storing environment specific application settings/configurations. Dotenv [is not meant to be used in production](https://github.com/vlucas/phpdotenv/issues/76#issuecomment-87252126)
+
+Just Google: "DB_PASSWORD" filetype:env
+Alternatively, you can visit the following link: [Google env search](https://www.google.ch/search?q=%22DB_PASSWORD%22+filetype:env)
+
+Instead, follow the instructions that are detailed in [config/env.example.php](config/env.example.php)
+
 ## Installation
 
 1. **Clone this repository** or download this repository.
@@ -48,7 +81,7 @@ This starter template follows best practices and adheres to industry standards:
 
 Here's how everything is organized:
 
-```
+```plaintext
 slim-mvc/
 ├── app/
 │   ├── Controllers/    # Your controllers live here
@@ -105,7 +138,7 @@ Logs are written to the `var/logs/` directory. Use the injected logger in your c
 
 Got ideas for improvements? Found a bug? Pull requests are welcome!
 
-- [Issues](https://github.com/forstybee/slim-mvc/issues)
+- [Issues](https://github.com/frostybee/slim-mvc/issues)
 
 ## Acknowledgments
 
