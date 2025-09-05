@@ -60,8 +60,8 @@ abstract class BaseController
      *
      * @param Request $request The PSR-7 request object used to extract route context
      * @param Response $response The PSR-7 response object to be modified with redirect headers
-     * @param string $target_name The named route to redirect to (must be a valid route name)
-     * @param array $uri_args Associative array of route pattern placeholders and replacement values
+     * @param string $route_name The named route to redirect to (must be a valid route name)
+     * @param array $uri_args Associative array for route placeholders (e.g., ['id' => 123] for /users/{id})
      * @param array $query_params Associative array of query parameters to append to the URL
      * @param int $status The HTTP status code for the redirect (default: 302 Found)
      *
@@ -71,22 +71,22 @@ abstract class BaseController
      * @throws RuntimeException If the route parser cannot generate a valid URL
      *
      * @example
-     * // Basic redirect
-     * return $this->redirect($request, $response, 'home');
+     * // Basic redirect (no parameters)
+     * return $this->redirect($request, $response, 'home.index');
      *
-     * // Redirect with route parameters
-     * return $this->redirect($request, $response, 'user-profile', ['id' => 123]);
+     * // Redirect with route parameters (for route: /users/{id})
+     * return $this->redirect($request, $response, 'user.profile', ['id' => 123]);
      *
-     * // Redirect with query parameters
-     * return $this->redirect($request, $response, 'search', [], ['q' => 'term', 'page' => 2]);
+     * // Redirect with query parameters only
+     * return $this->redirect($request, $response, 'search.index', [], ['q' => 'term', 'page' => 2]);
      *
-     * // Redirect with both route parameters and query strings
-     * return $this->redirect($request, $response, 'user-edit', ['id' => 123], ['tab' => 'settings']);
+     * // Redirect with both route parameters and query strings (for route: /users/{id}/edit)
+     * return $this->redirect($request, $response, 'user.edit', ['id' => 123], ['tab' => 'settings']);
      */
-    protected function redirect(Request $request, Response $response, string $target_name, array $uri_args = [], array $query_params = []): Response
+    protected function redirect(Request $request, Response $response, string $route_name, array $uri_args = [], array $query_params = []): Response
     {
         $route_parser = RouteContext::fromRequest($request)->getRouteParser();
-        $target_uri = $route_parser->urlFor($target_name, $uri_args, $query_params);
+        $target_uri = $route_parser->urlFor($route_name, $uri_args, $query_params);
         return $response->withStatus(302)->withHeader('Location', $target_uri);
     }
 }

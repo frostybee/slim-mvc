@@ -19,8 +19,8 @@ return static function (Slim\App $app): void {
         //* ROUTE: GET /api/status
         $group->get('/status', function (Request $request, Response $response, $args) {
             $payload = [
-                "greetings" => "Reporting! Hello there!",
-                "now" =>  date('Y-m-d H:i:s'),
+                "message" => "Reporting! Hello there!",
+                "date" =>  date('Y-m-d H:i:s'),
             ];
             $response->getBody()->write(json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR));
             return $response;

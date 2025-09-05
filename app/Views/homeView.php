@@ -4,12 +4,6 @@ use App\Helpers\ViewHelper;
 //TODO: set the page title dynamically based on the view being rendered in the controller.
 $page_title = 'Home';
 ViewHelper::loadHeader($page_title);
-$countries = [
-    ['id' => 1, 'name' => 'Canada'],
-    ['id' => 2, 'name' => 'United States']
-];
-$options = ViewHelper::renderSelectOptions($countries, '1', 'id', 'name');
-echo '<select name="country">' . $options . '</select>';
 ?>
 
 <h1>Slim Framework-based MVC Application</h1>

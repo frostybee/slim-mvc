@@ -25,12 +25,20 @@ class HomeController extends BaseController
         //$data['flash'] = $this->flash->getFlashMessage();
         //echo $data['message'] ;exit;
 
+
         $data['data'] = [
             'title' => 'Home',
             'message' => 'Welcome to the home page',
         ];
+
         //dd($data);
         //var_dump($this->session); exit;
         return $this->render($response, 'homeView.php', $data);
+    }
+
+    public function error(Request $request, Response $response, array $args): Response
+    {
+
+        return $this->render($response, 'errorView.php');
     }
 }
