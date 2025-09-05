@@ -1,10 +1,10 @@
 # Slim Framework Starter Template
 
-A lightweight MVC web application starter template built on top of the Slim PHP microframework. Perfect for when you want the simplicity of Slim but with a proper MVC structure to keep your code organized and maintainable.
+A lightweight MVC web application starter template built on top of the Slim PHP microframework. Ideal for projects that require Slim's simplicity without sacrificing the benefits of a clean MVC architecture.
 
 ## Why Using this Template?
 
-This template gives you a solid foundation to build web applications using the Slim 4 framework with a classic MVC (Model-View-Controller) pattern. It's got everything you need to get started without the bloat of larger frameworks.
+This template provides a starting point for building web applications with the Slim 4 framework using the classic MVC (Model–View–Controller) pattern. It includes everything you need to get started, without the extra complexity of larger frameworks.
 
 ## What's Included
 
