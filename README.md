@@ -114,15 +114,15 @@ Routes are defined in the `app/Routes/` directory. Check out the existing route 
 
 ### Creating Controllers
 
-Controllers go in `app/src/Controllers/`. They should extend the base controller class and follow PSR-4 autoloading.
+Controllers go in `app/Controllers/`. They should extend the base controller class and follow PSR-4 autoloading.
 
 ### Views and Templates
 
-Templates are stored in `app/src/Views/`. The template engine is already configured and ready to use.
+Templates are stored in `app/Views/`. The template engine is already configured and ready to use.
 
 ### Configuration
 
-App configuration lives in `app/config/`. Modify these files to customize your application settings.
+App configuration lives in `config/`. Modify these files to customize your application settings.
 
 ### Logging
 

@@ -7,16 +7,48 @@ namespace App\Utils;
 use Exception;
 use PDO;
 
+/**
+ * PDO database service wrapper.
+ * 
+ * Provides a service layer for PDO database connections with lazy loading
+ * and configuration-based connection management.
+ */
 class PDOService
 {
+    /**
+     * The PDO database connection instance.
+     *
+     * @var PDO|null
+     */
     private ?PDO $db = null;
+
+    /**
+     * Database configuration array.
+     *
+     * @var array
+     */
     private array $config = [];
 
-
+    /**
+     * Constructor to initialize the PDOService with database configuration.
+     *
+     * @param array $config Database configuration array containing connection parameters.
+     */
     public function __construct(array $config)
     {
         $this->config = $config;
     }
+
+    /**
+     * Establishes a database connection if one doesn't exist.
+     * 
+     * Creates a MySQL PDO connection using the provided configuration.
+     * Connection is established lazily on first access.
+     *
+     * @throws Exception If required configuration parameters are missing.
+     * @throws \PDOException If the database connection fails.
+     * @return void
+     */
     private function connect(): void
     {
         if ($this->db !== null) {
@@ -51,7 +83,17 @@ class PDOService
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
-    function getPDO(): PDO
+
+    /**
+     * Gets the PDO database connection instance.
+     * 
+     * Establishes the connection if it doesn't exist and returns the PDO instance.
+     *
+     * @return PDO The PDO database connection instance.
+     * @throws Exception If required configuration parameters are missing.
+     * @throws \PDOException If the database connection fails.
+     */
+    public function getPDO(): PDO
     {
         $this->connect();
         return $this->db;
