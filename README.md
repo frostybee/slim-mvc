@@ -35,7 +35,7 @@ Follow the instructions below in the specified order:
 3. Copy the `slim-mvc-main` folder into your Web server's **document root** (that is, `htdocs`)
 4. Rename the `slim-mvc-main` folder to, for example, `[project_name]-app`. For example, `worldcup-app`
 5. Open your `[project_name]-app` folder in VS Code
-6. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) and select `Command Prompt` dropdown menu in the upper-right corner. Then run `../../composer.bat update` command to install or update the required dependencies.
+6. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) and select `Command Prompt` dropdown menu in the upper-right corner. Then run `"../../composer.bat" update` (**NOTE**:  double quotes are required) command to install or update the required dependencies. 
    - If you are not using Wampoon to develop your app, just run composer from the command line.
 7. Adjust your database credentials, **see below**.
 
