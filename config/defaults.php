@@ -2,28 +2,27 @@
 
 declare(strict_types=1);
 
-// Application's default settings
+// Application's default settings.
 
-// Error reporting
+// Error reporting.
 // Default settings: disable all error reporting for production.
 error_reporting(0);
 ini_set('display_errors', '0');
 ini_set('display_startup_errors', '0');
-// Timezone
+
+// Timezone.
 date_default_timezone_set('America/Toronto');
 
 $settings = [];
 
-// Error handler
+// Error handler.
 $settings['error'] = [
     // Should be set to false for the production environment
     'display_error_details' => false,
 ];
 
 
-// TODO:
-// 1. change the domain name.
-// 2. change the domain name.
+//TODO: Set the session path to a temporary directory.
 $settings['session'] = [
     'name' => 'app_session',
     'lifetime' => 30 * 557200,
@@ -36,7 +35,7 @@ $settings['session'] = [
     'cache_limiter' => 'nocache',
 ];
 
-// Logger settings
+// Logger settings.
 $settings['logger'] = [
     // Log file location
     'path' => realpath(__DIR__ . '/../../var/logs'),
@@ -44,7 +43,7 @@ $settings['logger'] = [
     'level' => Psr\Log\LogLevel::DEBUG,
 ];
 
-// Database settings
+// Database settings.
 $settings['db'] = [
     'host' => 'localhost',
     'encoding' => 'utf8mb4',

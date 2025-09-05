@@ -22,6 +22,7 @@ abstract class BaseController
     public function __construct(Container $container)
     {
         $this->container = $container;
+        $this->settings = $container->get(AppSettings::class);
         $this->view = $container->get(PhpRenderer::class);
     }
 
@@ -85,7 +86,7 @@ abstract class BaseController
     protected function redirect(Request $request, Response $response, string $target_name, array $uri_args = [], array $query_params = []): Response
     {
         $route_parser = RouteContext::fromRequest($request)->getRouteParser();
-        $view_uri = $route_parser->urlFor($target_name, $uri_args, $query_params);
-        return $response->withStatus(302)->withHeader('Location', $view_uri);
+        $target_uri = $route_parser->urlFor($target_name, $uri_args, $query_params);
+        return $response->withStatus(302)->withHeader('Location', $target_uri);
     }
 }
