@@ -15,7 +15,7 @@ Create a model class by extending `BaseModel`:
 
 namespace App\Domain\Models;
 
-use App\Utils\PDOService;
+use App\Helpers\Core\PDOService;
 
 class UserModel extends BaseModel
 {
@@ -245,7 +245,7 @@ Here's a complete example of a UserModel with various operations:
 
 namespace App\Domain\Models;
 
-use App\Utils\PDOService;
+use App\Helpers\Core\PDOService;
 use Exception;
 
 class UserModel extends BaseModel

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Utils;
+namespace App\Helpers\Core;
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * JSON response renderer utility.
- * 
+ *
  * Provides functionality to render JSON responses with proper headers
  * and encoding for PSR-7 HTTP responses.
  */

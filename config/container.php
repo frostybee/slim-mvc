@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Utils\AppSettings;
-use App\Utils\JsonRenderer;
-use App\Utils\PDOService;
+use App\Helpers\Core\AppSettings;
+use App\Helpers\Core\JsonRenderer;
+use App\Helpers\Core\PDOService;
 use App\Middleware\ExceptionMiddleware;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
@@ -30,8 +30,8 @@ $definitions = [
 
         // Register web routes.
         (require_once realpath(__DIR__ . '/../app/Routes/web-routes.php'))($app);
-        // Register API routes.
-        (require_once realpath(__DIR__ . '/../app/Routes/api-routes.php'))($app);
+        //TODO: We will add it back later (register API routes).
+        //(require_once realpath(__DIR__ . '/../app/Routes/api-routes.php'))($app);
 
         // Register middleware
         (require_once realpath(__DIR__ . '/middleware.php'))($app);

@@ -13,7 +13,7 @@ The `BaseController` class provides foundational functionality for all controlle
 
 namespace App\Controllers;
 
-use App\Utils\AppSettings;
+use App\Helpers\Core\AppSettings;
 use Slim\Views\PhpRenderer;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;

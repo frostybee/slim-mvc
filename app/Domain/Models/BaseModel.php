@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Models;
 
-use App\Utils\PDOService;
+use App\Helpers\Core\PDOService;
 use PDO;
 
 /**

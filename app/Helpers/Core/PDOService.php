@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Utils;
+namespace App\Helpers\Core;
 
 use Exception;
 use PDO;
 
 /**
  * PDO database service wrapper.
- * 
+ *
  * Provides a service layer for PDO database connections with lazy loading
  * and configuration-based connection management.
  */
@@ -41,7 +41,7 @@ class PDOService
 
     /**
      * Establishes a database connection if one doesn't exist.
-     * 
+     *
      * Creates a MySQL PDO connection using the provided configuration.
      * Connection is established lazily on first access.
      *
@@ -86,7 +86,7 @@ class PDOService
 
     /**
      * Gets the PDO database connection instance.
-     * 
+     *
      * Establishes the connection if it doesn't exist and returns the PDO instance.
      *
      * @return PDO The PDO database connection instance.

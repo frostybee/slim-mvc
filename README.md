@@ -37,7 +37,8 @@ Follow the instructions below in the specified order:
 5. Open your `[project_name]-app` folder in VS Code
 6. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) and select `Command Prompt` dropdown menu in the upper-right corner. Then run `"../../composer.bat" update` (**NOTE**:  double quotes are required) command to install or update the required dependencies. 
    - If you are not using Wampoon to develop your app, just run composer from the command line.
-7. Adjust your database credentials, **see below**.
+7. In the `config` folder, make a copy of `env.example.php` and rename it to `env.php`.
+8. Adjust your database credentials (**see below**).
 
 **```NOTE:```** You can always clone this repository. However, if you do, you need to remove the ```.git``` ***hidden*** directory before you copy this template over to ```htdocs```
 
