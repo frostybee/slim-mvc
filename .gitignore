@@ -1,5 +1,6 @@
 env.php
 config/env.php
+docs/
 
 # Composer and dependencies
 vendor/

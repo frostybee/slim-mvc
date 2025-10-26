@@ -22,7 +22,6 @@ class HomeController extends BaseController
         //$data['flash'] = $this->flash->getFlashMessage();
         //echo $data['message'] ;exit;
 
-
         $data['data'] = [
             'title' => 'Home',
             'message' => 'Welcome to the home page',
