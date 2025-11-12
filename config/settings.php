@@ -8,24 +8,32 @@ declare(strict_types=1);
 $_ENV['APP_ENV'] ??= $_SERVER['APP_ENV'] ?? 'dev';
 $app_environment = $_ENV['APP_ENV'];
 
-// Load default settings
+// Load default settings.
 $settings = require __DIR__ . '/defaults.php';
 
-// Overwrite default settings with environment specific local settings
-$configFiles = [
-    __DIR__ . sprintf('/local.%s.php', $app_environment),
+
+if (!file_exists(__DIR__ . '/env.php')) {
+
+    trigger_error('&nbsp; env.php file not found. Please create it in the <strong>config folder</strong> by copying <b>env.example.php</b> and renaming it to <b>env.php</b>. For more details about configuring this application, refer to: <br><a href="https://github.com/frostybee/slim-mvc?tab=readme-ov-file#how-do-i-usedeploy-this-template" target="_blank">Configuration instructions in README.md</a>');
+    exit;
+}
+
+
+// Override default settings with environment specific local settings.
+$config_files = [
+    __DIR__ . sprintf('/settings.%s.php', $app_environment),
     __DIR__ . '/env.php',
     __DIR__ . '/../../env.php',
 ];
 
-foreach ($configFiles as $configFile) {
-    if (!file_exists($configFile)) {
+foreach ($config_files as $config_file) {
+    if (!file_exists($config_file)) {
         continue;
     }
 
-    $local = require $configFile;
-    if (is_callable($local)) {
-        $settings = $local($settings);
+    $local_settings = require $config_file;
+    if (is_callable($local_settings)) {
+        $settings = $local_settings($settings);
     }
 }
 

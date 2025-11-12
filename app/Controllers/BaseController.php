@@ -34,7 +34,7 @@ abstract class BaseController
      * is set to 'text/html; charset=utf-8' to indicate that the response contains HTML content.
      *
      * @param Response $response The PSR-7 response object to be modified with rendered content.
-     * @param string $view_name The name of the view template to render (must be a valid view file)
+     * @param string $view_file The name or relative path of the view template to render (must be a valid view file path relative to the views directory)
      * @param array $data Associative array of data to be passed to the view template.
      *
      * @return Response The modified response object with rendered content and appropriate headers.
@@ -43,17 +43,17 @@ abstract class BaseController
      * @throws \Slim\Exception\HttpInternalServerErrorException If the view cannot be rendered.
      *
      */
-    protected function render(Response $response, string $view_name, array $data = []): Response
+    protected function render(Response $response, string $view_file, array $data = []): Response
     {
         $response = $response->withHeader('Content-Type', 'text/html; charset=utf-8');
         //dd($data);
-        return $this->view->render($response, $view_name, $data);
+        return $this->view->render($response, $view_file, $data);
     }
 
     /**
      * Redirects the client to a named route with optional route parameters and query strings.
      *
-     * Creates a redirect response by resolving the route name to a URI using Slim's RouteParser
+     * Creates a redirect HTTP response by resolving the route name to a URI using Slim's RouteParser
      * and setting the appropriate Location header with the specified HTTP status code. Supports
      * both route pattern placeholders (e.g., /users/{id}) and query string parameters.
      *

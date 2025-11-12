@@ -9,8 +9,7 @@ $autoloadPath = realpath(__DIR__ . '/../vendor/autoload.php');
 if ($autoloadPath !== false && is_file($autoloadPath)) {
     require $autoloadPath;
 } else {
-    echo '<br/><strong>Error:</strong> Composer autoload file not found. Please run "../../composer.bat" update to install the dependencies.';
-    exit(1);
+    die('<br><strong>Error:</strong> Composer autoload file not found. <br> <br><strong>Fix:</strong> Please run the following command in a <strong>VS Code command prompt terminal</strong> to install the missing dependencies: <br><strong>Command (keep the double quotes):</strong> <span style="background-color: yellow;"> "../../composer.bat" update </span><br> For more details, refer to: <br><a href="https://github.com/frostybee/slim-mvc?tab=readme-ov-file#how-do-i-usedeploy-this-template" target="_blank">Configuration instructions in README.md</a>');
 }
 
 // Load the app's global constants.
