@@ -23,6 +23,6 @@ return static function (Slim\App $app): void {
 
     // A route to test runtime error handling and custom exceptions.
     $app->get('/error', function (Request $request, Response $response, $args) {
-        throw new \Slim\Exception\HttpNotFoundException($request, "Something went wrong");
+        throw new \Slim\Exception\HttpBadRequestException($request, "This is a runtime error. Something went wrong");
     });
 };
