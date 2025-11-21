@@ -1,6 +1,7 @@
 env.php
 config/env.php
 docs/
+!docs/Custom_404_page_implementation.md
 
 # Composer and dependencies
 vendor/
