@@ -5,15 +5,15 @@ declare(strict_types=1);
 //Settings for  development (dev) environment
 
 // App-specific config.
-define('APP_DEBUG_MODE', true);
-define('APP_ASSETS_DIR', '/public/assets');
-define('APP_BASE_URL', 'http://localhost/' . APP_ROOT_DIR_NAME);
+const APP_DEBUG_MODE = true;
+const APP_ASSETS_DIR = '/public/assets';
+const APP_BASE_URL = 'http://localhost/' . APP_ROOT_DIR_NAME;
 
-define('APP_ASSETS_DIR_URL', APP_BASE_URL  . APP_ASSETS_DIR);
-define('APP_ASSETS_DIR_PATH', realpath(APP_BASE_DIR_PATH . '/' . APP_ASSETS_DIR));
+const APP_ASSETS_DIR_URL = APP_BASE_URL  . APP_ASSETS_DIR;
+const APP_ASSETS_DIR_PATH = APP_BASE_DIR_PATH . '/' . APP_ASSETS_DIR;
 
 // Update the cache busting token upon new deployments.
-define('CACHE_BUSTING_TOKEN', 'YV954');
+const CACHE_BUSTING_TOKEN = 'YV954';
 
 return function (array $settings): array {
     // Error reporting
