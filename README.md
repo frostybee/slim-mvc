@@ -55,10 +55,10 @@ To install or update your project dependencies deployed on Wampoon, use the `com
 
 | Action                | Command                            | Description                                                                     |
 | --------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
-| Install dependencies  | `.\composer.bat install`           | Installs packages listed in `composer.json` and creates the `vendor` directory. |
-| Update dependencies   | `.\composer.bat update`            | Refreshes all packages to the latest versions allowed by `composer.json`.       |
-| Add a package         | `.\composer.bat require [package]` | Installs a new package and adds it to `composer.json`.                          |
-| Regenerate autoloader | `.\composer.bat dump-autoload -o`  | Rebuilds the optimized autoloader after adding or removing classes.             |
+| Install dependencies  | `./composer.bat install`           | Installs packages listed in `composer.json` and creates the `vendor` directory. |
+| Update dependencies   | `./composer.bat update`            | Refreshes all packages to the latest versions allowed by `composer.json`.       |
+| Add a package         | `./composer.bat require [package]` | Installs a new package and adds it to `composer.json`.                          |
+| Regenerate autoloader | `./composer.bat dump-autoload -o`  | Rebuilds the optimized autoloader after adding or removing classes.             |
 
 
 ## On Using Environment Variables
@@ -99,11 +99,11 @@ slim-mvc/
 ├── app/
 │   ├── Controllers/    # Your controllers live here
 │   ├── Domain/         # Domain logic and business rules
+│   │   ├── Models/     # Data models and entities
+│   │   └── Services/   # Business logic services
 │   ├── Helpers/        # Utility classes and helpers
 │   ├── Middleware/     # Custom middleware
-│   ├── Models/         # Data models and entities
 │   ├── Routes/         # Route definitions (web & API)
-│   ├── Utils/          # General utility functions
 │   └── Views/          # Your view templates
 ├── config/             # Configuration files and bootstrap
 ├── data/               # Database files, uploads, etc.
