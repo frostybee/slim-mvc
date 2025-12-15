@@ -6,6 +6,7 @@
     "keywords": [
         "php",
         "slim-framework-mvc",
+        "slim-mvc-skeleton",
         "mvc-php",
         "slim4",
         "slim"
@@ -33,6 +34,9 @@
         }
     },
     "scripts": {
-        "start": "php -S localhost:8080 -t public public/index.php"
+        "start": "php -S localhost:8080 -t public public/index.php",
+        "post-create-project-cmd": [
+            "@php -r \"file_exists('config/env.php') || copy('config/env.example.php', 'config/env.php');\""
+        ]
     }
 }

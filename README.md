@@ -28,14 +28,25 @@ This starter template follows best practices and adheres to industry standards:
 
 ## How Do I Use/Deploy this Template?
 
-Follow the instructions below in the specified order:
+### Option 1: Using Composer (Recommended)
 
-1. Download this repository as `.zip` file.
+1. Open a terminal in your web server's **document root** (i.e., `htdocs`).
+2. Run the following command:
+   ```bash
+   composer create-project frostybee/slim-mvc [project-name]-app
+   ```
+   Replace `[project-name]` with your project name (e.g., `worldcup-app`).
+3. Open your `[project-name]-app` folder in VS Code.
+4. Adjust your database credentials in `config/env.php` (**see below**).
+
+### Option 2: Manual Installation
+
+1. Download this repository as a `.zip` file.
 2. Extract the downloaded `slim-mvc-main.zip` file locally.
-3. Copy the `slim-mvc-main` folder into your Web server's **document root** (that is, `htdocs`)
-4. Rename the `slim-mvc-main` folder to, for example, `[project_name]-app`. For example, `worldcup-app`
-5. Open your `[project_name]-app` folder in VS Code
-6. Install the project dependencies by running composer. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) then run `.\composer.bat update`  
+3. Copy the `slim-mvc-main` folder into your web server's **document root** (i.e., `htdocs`).
+4. Rename the `slim-mvc-main` folder to `[project_name]-app` (for example, `worldcup-app`).
+5. Open your `[project_name]-app` folder in VS Code.
+6. Install the project dependencies by running composer. If you are using Wampoon, open a terminal window in VS Code (hit ``` Ctrl+` ```) then run `.\composer.bat update`
    - If you are not using Wampoon to develop your app, just run composer from the command line.
 7. In the `config` folder, make a copy of `env.example.php` and rename it to `env.php`.
 8. Adjust your database credentials (**see below**).
@@ -71,24 +82,6 @@ Just Google: "DB_PASSWORD" filetype:env
 Alternatively, you can visit the following link: [Google env search](https://www.google.ch/search?q=%22DB_PASSWORD%22+filetype:env)
 
 Instead, follow the instructions that are detailed in [config/env.example.php](config/env.example.php)
-
-## Installation
-
-1. **Clone this repository** or download this repository.
-   ```bash
-   git clone https://github.com/frostybee/slim-mvc.git your-project-name
-   cd your-project-name
-   ```
-
-2. **Install dependencies**
-   ```bash
-   composer install
-   ```
-   
-   Or if you don't have Composer globally installed, use the included `composer.bat` (you might need to adjust the PHP path):
-   ```bash
-   composer.bat install
-   ```
 
 ## Project Structure
 

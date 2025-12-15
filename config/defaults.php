@@ -52,7 +52,7 @@ $settings['session'] = [
 // Logger settings.
 $settings['logger'] = [
     // Log file location
-    'path' => __DIR__ . '/../../var/logs',
+    'path' => APP_BASE_DIR_PATH . '/var/logs',
     // Default log level
     'level' => Psr\Log\LogLevel::DEBUG,
 ];

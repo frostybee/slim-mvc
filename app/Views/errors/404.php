@@ -12,7 +12,7 @@ ViewHelper::loadHeader($page_title);
     <p style="font-size: 18px; color: #666; margin: 20px 0;">
         Sorry, the page you are looking for does not exist.
     </p>
-    <a href="/" style="display: inline-block; margin-top: 30px; padding: 12px 30px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">
+    <a href="/<?= APP_ROOT_DIR_NAME ?>/" style="display: inline-block; margin-top: 30px; padding: 12px 30px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">
         Go Back Home
     </a>
 </div>
