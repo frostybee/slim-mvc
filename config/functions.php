@@ -10,6 +10,30 @@ declare(strict_types=1);
 
 
 /**
+ * Returns the application's base URL.
+ *
+ * This function provides a single point of truth for the base URL,
+ * detecting the protocol and host dynamically. It handles both Docker
+ * (root path) and local development (subdirectory) environments.
+ *
+ * @param string $path Optional path to append to the base URL.
+ * @return string The full base URL, optionally with appended path.
+ *
+ * @example
+ * base_url();           // 'http://localhost/app-name' or 'http://localhost:8080'
+ * base_url('/');        // 'http://localhost/app-name/' or 'http://localhost:8080/'
+ * base_url('/users');   // 'http://localhost/app-name/users' or 'http://localhost:8080/users'
+ */
+function base_url(string $path = ''): string
+{
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $basePath = APP_ROOT_DIR_NAME ? '/' . APP_ROOT_DIR_NAME : '';
+
+    return $protocol . '://' . $host . $basePath . $path;
+}
+
+/**
  * dd: dump and die.
  *
  * This helper function is very useful for debugging: it outputs the content of the supplied variable and
@@ -64,75 +88,54 @@ function hs($string)
 }
 
 
-if (!function_exists('get_asset_url')) {
+if (!function_exists('asset_url')) {
     /**
-     * Assets URL helper function.
+     * Returns the full URL for an asset file with optional cache busting.
      *
-     * This function will create an asset file URL that includes a cache busting parameter in order
-     * to invalidate the browser cache in case of an update.
+     * This is the recommended way to reference any static asset (CSS, JS, images,
+     * fonts, etc.) in your views. It provides full flexibility for custom HTML
+     * attributes while handling cache busting and minification automatically.
      *
-     * @param string $asset_uri Relative URI (just like the one used in the base_url helper).
+     * Features:
+     * - Verifies the file exists before generating the URL
+     * - Adds cache busting token in production (optional)
+     * - Auto-switches to .min.js/.min.css in production
+     * - Works with any asset type (CSS, JS, images, fonts, etc.)
      *
-     * @return string Returns the final asset URL.
+     * @param string $asset_uri Path relative to public/assets/ (e.g., '/css/style.css').
+     * @param bool $cache_bust Whether to add cache busting token (default: true).
+     *
+     * @return string The full asset URL, or empty string if file not found.
+     *
+     * @example
+     * <link href="<?= asset_url('/css/style.css') ?>" rel="stylesheet">
+     * <link href="<?= asset_url('/css/print.css') ?>" rel="stylesheet" media="print">
+     * <script src="<?= asset_url('/js/app.js') ?>"></script>
+     * <script src="<?= asset_url('/js/app.js') ?>" defer async></script>
+     * <img src="<?= asset_url('/images/logo.png') ?>" alt="Logo">
+     * <img src="<?= asset_url('/images/versioned-v2.png', false) ?>" alt="No cache bust">
      */
-    function get_asset_url(string $asset_uri = ''): string
+    function asset_url(string $asset_uri, bool $cache_bust = true): string
     {
-        $debug = APP_DEBUG_MODE;
-
-        $cache_busting_token = !$debug ? '?' . CACHE_BUSTING_TOKEN : '';
-
-        if (str_contains(basename($asset_uri), '.js') && !str_contains(basename($asset_uri), '.min.js') && !$debug) {
-            $asset_uri = str_replace('.js', '.min.js', $asset_uri);
+        // Check if file exists
+        $file_path = APP_ASSETS_DIR_PATH . $asset_uri;
+        if (!file_exists($file_path)) {
+            return '';
         }
 
-        if (str_contains(basename($asset_uri), '.css') && !str_contains(basename($asset_uri), '.min.css') && !$debug) {
-            $asset_uri = str_replace('.css', '.min.css', $asset_uri);
+        $cache_busting_token = $cache_bust ? '?' . filemtime($file_path) : '';
+
+        // Auto-switch to minified versions in production
+        if (!APP_DEBUG_MODE) {
+            if (str_contains($asset_uri, '.js') && !str_contains($asset_uri, '.min.js')) {
+                $asset_uri = str_replace('.js', '.min.js', $asset_uri);
+            }
+            if (str_contains($asset_uri, '.css') && !str_contains($asset_uri, '.min.css')) {
+                $asset_uri = str_replace('.css', '.min.css', $asset_uri);
+            }
         }
 
-        //TODO: APP_BASE_URL can be replaced by a base_url function. where the protocol can be detected.
-        return APP_BASE_URL . $asset_uri . $cache_busting_token;
-    }
-}
-
-if (!function_exists('css_link')) {
-
-    /**
-     * Creates a <link> HTML element linking the supplied CSS file's URI.
-     *
-     * @param  mixed $css_uri  The URI of the CSS resource to be linked
-     * @return string A configured <link> element.
-     */
-    function css_link(string $css_uri): string
-    {
-        // dd(APP_ASSETS_DIR . $css_uri);
-        if (file_exists(APP_ASSETS_DIR_PATH . $css_uri)) {
-            //we know it will exists within the HTTP Context
-            $css_uri = APP_ASSETS_DIR_URL . $css_uri;
-            return sprintf('<link href="%s" rel="stylesheet" type="text/css">', get_asset_url($css_uri));
-            // return sprintf("<script type=\"text/javascript\" src=\"%s\"></script>", $css_uri);
-        }
-        return "<!-- Unable to load $css_uri -->";
-    }
-}
-
-if (!function_exists('js_link')) {
-
-    /**
-     * Creates a <script> HTML element linking the supplied JS file's URI.
-     *
-     * @param  mixed $js_uri The URI of the JS file to be linked
-     * @param  bool $is_module Whether the JS file is an ES6 module.
-     * @return string A string representing a configured <script> element.
-     */
-    function js_link(string $js_uri, bool $is_module = false): string
-    {
-        $script_type = $is_module ? 'module' : 'text/javascript';
-        if (file_exists(APP_ASSETS_DIR_PATH . $js_uri)) {
-            //we know it will exists within the HTTP Context
-            $js_uri = APP_ASSETS_DIR_URL . $js_uri;
-            return sprintf('<script  type="%s" src="%s"></script>', $script_type, get_asset_url($js_uri));
-        }
-        return "<!-- Unable to load $js_uri -->";
+        return base_url(APP_ASSETS_DIR . $asset_uri) . $cache_busting_token;
     }
 }
 

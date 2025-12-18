@@ -28,7 +28,18 @@ This starter template follows best practices and adheres to industry standards:
 
 ## How Do I Use/Deploy this Template?
 
+- [Option 1: Using Composer (Recommended)](#option-1-using-composer-recommended)
+- [Option 2: Using Docker (macOS/Linux/Windows)](#option-2-using-docker-macoslinuxwindows)
+- [Option 3: Manual Installation](#option-3-manual-installation)
+
 ### Option 1: Using Composer (Recommended)
+
+**Prerequisites:**
+- PHP 8.2 or higher installed locally
+- [Composer](https://getcomposer.org/) installed globally
+- A web server (Apache/Nginx) or [Wampoon](https://wampoon-box.github.io/)
+
+> **Don't have PHP installed?** Use [Option 2: Docker](#option-2-using-docker-macoslinuxwindows) instead.
 
 1. Open a terminal in your web server's **document root** (i.e., `htdocs`).
 2. Run the following command:
@@ -39,7 +50,125 @@ This starter template follows best practices and adheres to industry standards:
 3. Open your `[project-name]-app` folder in VS Code.
 4. Adjust your database credentials in `config/env.php` (**see below**).
 
-### Option 2: Manual Installation
+### Option 2: Using Docker (macOS/Linux/Windows)
+
+Docker allows you to run the application in containers without installing PHP, Apache, or MariaDB locally. This works on **macOS**, **Linux**, and **Windows**.
+
+**Prerequisites:**
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Install [Git](https://git-scm.com/downloads)
+
+**Quick Start:**
+
+1. Clone the repository (since Composer requires PHP, which you may not have installed):
+   ```bash
+   git clone https://github.com/frostybee/slim-mvc.git [project-name]-app
+   ```
+   Replace `[project-name]` with your project name (e.g., `worldcup-app`).
+
+2. Navigate to the project folder:
+   ```bash
+   cd [project-name]-app
+   ```
+
+3. Remove the `.git` folder to start fresh with your own repository:
+   ```bash
+   rm -rf .git
+   ```
+
+4. Start all containers by executing the following command:
+   ```bash
+   docker-compose up -d
+   ```
+
+5. Install PHP dependencies (first time only):
+   ```bash
+   docker-compose exec app composer install
+   ```
+
+6. Access the application:
+   - **App:** http://localhost:8080
+   - **phpMyAdmin:** http://localhost:8081
+
+**Configuring the Database:**
+
+The default database name is `slim_mvc`. To use a different database name:
+
+1. Update `docker-compose.yml`:
+   ```yaml
+   db:
+     environment:
+       MYSQL_DATABASE: your_database_name
+   ```
+
+2. Update `config/env.docker.php`:
+   ```php
+   $settings['db']['database'] = 'your_database_name';
+   ```
+
+3. Rebuild containers: `docker-compose up -d --build`
+
+**Importing Database Schema:**
+
+To automatically import a database schema when the container starts:
+
+1. Place your `.sql` file(s) in the `docker/init-db/` folder
+2. Start the containers: `docker-compose up -d`
+
+The SQL files will be executed automatically on first container creation. If you have multiple files, they run in alphabetical order (e.g., `01-schema.sql`, `02-data.sql`).
+
+To re-import the schema, remove the database volume and restart:
+```bash
+docker-compose down -v
+docker-compose up -d
+```
+
+**Database Credentials (for phpMyAdmin):**
+| Username  | Password  |
+| --------- | --------- |
+| root      | secret    |
+| slim_user | slim_pass |
+
+**Common Commands:**
+
+| Action             | Command                                    |
+| ------------------ | ------------------------------------------ |
+| Start containers   | `docker-compose up -d`                     |
+| Stop containers    | `docker-compose down`                      |
+| View app logs      | `docker-compose logs -f app`               |
+| Run composer       | `docker-compose exec app composer install` |
+| Delete database    | `docker-compose down -v`                   |
+| Rebuild containers | `docker-compose up -d --build`             |
+
+**Working with Multiple Projects:**
+
+If you run **one project at a time**, no configuration changes are needed. Simply stop one project before starting another:
+
+```bash
+# Stop current project
+docker-compose down
+
+# Switch to another project
+cd ../other-project
+docker-compose up -d
+```
+
+If you need to run **multiple projects simultaneously**, change the port numbers in `docker-compose.yml` to avoid conflicts:
+
+```yaml
+services:
+  app:
+    ports:
+      - "8082:80"      # Change 8080 to 8082, 8083, etc.
+  db:
+    ports:
+      - "3307:3306"    # Change 3306 to 3307, 3308, etc.
+  phpmyadmin:
+    ports:
+      - "8083:80"      # Change 8081 to 8083, 8084, etc.
+```
+
+### Option 3: Manual Installation
 
 1. Download this repository as a `.zip` file.
 2. Extract the downloaded `slim-mvc-main.zip` file locally.
@@ -100,6 +229,9 @@ slim-mvc/
 │   └── Views/          # Your view templates
 ├── config/             # Configuration files and bootstrap
 ├── data/               # Database files, uploads, etc.
+├── docker/             # Docker configuration files
+│   ├── apache.conf     # Apache virtual host config
+│   └── init-db/        # Database initialization scripts
 ├── docs/               # Documentation
 ├── public/             # Web-accessible files
 │   ├── assets/         # Static assets (CSS, JS, images)
@@ -109,7 +241,9 @@ slim-mvc/
 │   └── .htaccess       # Apache rewrite rules
 ├── var/                # Runtime files
 │   └── logs/           # Application logs
-└── vendor/             # Composer dependencies
+├── vendor/             # Composer dependencies
+├── Dockerfile          # Docker image definition
+└── docker-compose.yml  # Docker services configuration
 ```
 
 ## Quick Development Tips

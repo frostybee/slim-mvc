@@ -6,8 +6,9 @@ declare(strict_types=1);
 define('APP_BASE_DIR_PATH', dirname(__DIR__, 1));
 
 // Holds the name of the app's root directory.
-// NOTE: the APP_ROOT_DIR_NAME  constant is used to set the base path of the application. Do not remove or change it.
-define('APP_ROOT_DIR_NAME', basename(dirname(__FILE__, 2)));
+// In Docker, this can be set via environment variable; otherwise, uses the folder name.
+// NOTE: the APP_ROOT_DIR_NAME constant is used to set the base path of the application. Do not remove or change it.
+define('APP_ROOT_DIR_NAME', $_ENV['APP_ROOT_DIR'] ?? basename(dirname(__FILE__, 2)));
 
 // Define the path of the application's views directory.
 const APP_VIEWS_PATH = APP_BASE_DIR_PATH . '/app/Views';

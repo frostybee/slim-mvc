@@ -1,2 +1,2 @@
 <?php
-// TODO: add your JavaScript imports here.
+// TODO: add your reusable JavaScript imports here.

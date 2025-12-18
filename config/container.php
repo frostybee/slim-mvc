@@ -25,8 +25,8 @@ $definitions = [
     App::class => function (ContainerInterface $container) {
 
         $app = AppFactory::createFromContainer($container);
-        // echo APP_ROOT_DIR_NAME;exit;
-        $app->setBasePath('/' . APP_ROOT_DIR_NAME);
+        // Set base path from APP_ROOT_DIR_NAME (empty in Docker, subdirectory name in Wampoon)
+        $app->setBasePath(APP_ROOT_DIR_NAME ? '/' . APP_ROOT_DIR_NAME : '');
 
         // Register web routes.
         (require_once __DIR__ . '/../app/Routes/web-routes.php')($app);

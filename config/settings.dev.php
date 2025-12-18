@@ -7,13 +7,13 @@ declare(strict_types=1);
 // App-specific config.
 const APP_DEBUG_MODE = true;
 const APP_ASSETS_DIR = '/public/assets';
-const APP_BASE_URL = 'http://localhost/' . APP_ROOT_DIR_NAME;
+// Base URL handles both Docker (port 8080, no subdirectory) and Wampoon (subdirectory)
+const APP_BASE_URL = APP_ROOT_DIR_NAME
+    ? 'http://localhost/' . APP_ROOT_DIR_NAME
+    : 'http://localhost:8080';
 
-const APP_ASSETS_DIR_URL = APP_BASE_URL  . APP_ASSETS_DIR;
-const APP_ASSETS_DIR_PATH = APP_BASE_DIR_PATH . '/' . APP_ASSETS_DIR;
-
-// Update the cache busting token upon new deployments.
-const CACHE_BUSTING_TOKEN = 'YV954';
+const APP_ASSETS_DIR_URL = APP_BASE_URL . APP_ASSETS_DIR;
+const APP_ASSETS_DIR_PATH = APP_BASE_DIR_PATH . APP_ASSETS_DIR;
 
 return function (array $settings): array {
     // Error reporting
