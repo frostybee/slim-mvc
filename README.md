@@ -80,6 +80,7 @@ Docker allows you to run the application in containers without installing PHP, A
    ```bash
    docker-compose up -d
    ```
+   > **Note:** Use `docker-compose up -d --build` to rebuild images after modifying the Dockerfile or related configurations.
 
 5. Install PHP dependencies (first time only):
    ```bash

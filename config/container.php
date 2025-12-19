@@ -6,7 +6,6 @@ use App\Helpers\Core\AppSettings;
 use App\Helpers\Core\JsonRenderer;
 use App\Helpers\Core\PDOService;
 use App\Middleware\ExceptionMiddleware;
-use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
@@ -14,6 +13,10 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Slim\Factory\AppFactory;
 use Slim\App;
+use Slim\Psr7\Factory\ResponseFactory;
+use Slim\Psr7\Factory\ServerRequestFactory;
+use Slim\Psr7\Factory\StreamFactory;
+use Slim\Psr7\Factory\UriFactory;
 use Slim\Views\PhpRenderer;
 
 $definitions = [
@@ -48,18 +51,10 @@ $definitions = [
     },
 
     // HTTP factories
-    ResponseFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
-    ServerRequestFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
-    StreamFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
-    UriFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
+    ResponseFactoryInterface::class => fn() => new ResponseFactory(),
+    ServerRequestFactoryInterface::class => fn() => new ServerRequestFactory(),
+    StreamFactoryInterface::class => fn() => new StreamFactory(),
+    UriFactoryInterface::class => fn() => new UriFactory(),
 
     // LoggerInterface::class => function (ContainerInterface $container) {
     //     $settings = $container->get('settings')['logger'];

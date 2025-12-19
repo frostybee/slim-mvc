@@ -25,8 +25,7 @@
         "php-di/php-di": "^7.0",
         "fig/http-message-util": "^1.1",
         "monolog/monolog": "^3.9",
-        "nyholm/psr7": "^1.8",
-        "nyholm/psr7-server": "^1.1"
+        "slim/psr7": "^1.8"
     },
     "autoload": {
         "psr-4": {
