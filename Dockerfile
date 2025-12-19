@@ -24,7 +24,7 @@ COPY . /var/www/html/
 # Remove root .htaccess (not needed in Docker - document root is already public/)
 RUN rm -f /var/www/html/.htaccess
 
-# Copy Docker env config to env.php (auto-setup for students)
+# Copy Docker env config to env.php (for standalone Docker usage; docker-compose overrides via volume mount)
 RUN cp /var/www/html/config/env.docker.php /var/www/html/config/env.php
 
 # Create logs directory with proper permissions
@@ -34,3 +34,6 @@ RUN mkdir -p /var/www/html/var/logs && chmod -R 777 /var/www/html/var/logs
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
+
+# And finally, we install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader

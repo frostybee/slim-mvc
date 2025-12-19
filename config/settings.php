@@ -6,7 +6,9 @@ declare(strict_types=1);
 // The APP_ENV value must be set to either prod or dev
 //$_ENV['APP_ENV'] = 'prod';
 $_ENV['APP_ENV'] ??= $_SERVER['APP_ENV'] ?? 'dev';
-$app_environment = $_ENV['APP_ENV'];
+
+// Docker uses dev settings.
+$app_environment = in_array($_ENV['APP_ENV'], ['docker', 'dev']) ? 'dev' : $_ENV['APP_ENV'];
 
 // Load default settings.
 $settings = require __DIR__ . '/defaults.php';

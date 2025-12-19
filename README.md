@@ -39,7 +39,7 @@ This starter template follows best practices and adheres to industry standards:
 - [Composer](https://getcomposer.org/) installed globally
 - A web server (Apache/Nginx) or [Wampoon](https://wampoon-box.github.io/)
 
-> **Don't have PHP installed?** Use [Option 2: Docker](#option-2-using-docker-macoslinuxwindows) instead.
+> **Don't have a WAMP/LAMP stack installed?** Use [Option 2: Docker](#option-2-using-docker-macoslinuxwindows) instead.
 
 1. Open a terminal in your web server's **document root** (i.e., `htdocs`).
 2. Run the following command:
